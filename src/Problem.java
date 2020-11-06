@@ -17,6 +17,20 @@ public class Problem {
     private double mark;
     private String category;
     private String author;
+
+    public Problem() {
+    }
+
+    public Problem(String problemID, String problemName, String date, String shortDescrip, String link, double mark, String category, String author) {
+        this.problemID = problemID;
+        this.problemName = problemName;
+        this.date = date;
+        this.shortDescrip = shortDescrip;
+        this.link = link;
+        this.mark = mark;
+        this.category = category;
+        this.author = author;
+    }
     
     
     
