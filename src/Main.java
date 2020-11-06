@@ -39,10 +39,11 @@ public class Main {
         ArrayList<Contestant> contestants = new ArrayList<>();
         ArrayList<String> passwords = new ArrayList<>();
         
-        readFromFile(contestants, passwords);
+        ManagementContestant.readContestantFromFile(contestants, passwords);
         //boolean statusLogin = Management.loginSystem(contestants, passwords);
-        int i = Management.loginSystem(contestants, passwords);
-        System.out.println(i);
+        int i = ManagementContestant.loginSystem(contestants, passwords);
+        ManagementContestant.updateProfileContestant(contestants, passwords, i);
+        //System.out.println(i);
 //        if (statusLogin) {
 //            System.out.println("Welcome to system.");
 //        }
@@ -53,46 +54,5 @@ public class Main {
 //        }
     }
     
-    public static void writeToFile(ArrayList<Contestant> list){
-        try{
-            FileWriter fw = new FileWriter("contestant.dat");
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (Contestant contestant : list) {
-                bw.write(contestant.toString());
-                bw.newLine();
-            }
-            bw.close();
-            fw.close();
-        }catch(Exception a){
-           
-        }
-    }
     
-    public static ArrayList<Contestant> readFromFile(ArrayList<Contestant> contestants, ArrayList<String> passwords){
-        //List<Contestant> list = new ArrayList<>();
-        try{
-            FileReader fr = new FileReader("contestant.dat");
-            BufferedReader br = new BufferedReader(fr);
-            String line = "";
-            while(true){
-                line = br.readLine();
-                if (line == null) {
-                    break;
-                }
-                String contestant[] = line.split(";");
-                
-                String name = contestant[0];
-                String id = contestant[1];
-                String email = contestant[2];
-                String mobilePhone = contestant[3];
-                int rank = Integer.parseInt(contestant[4]);
-                String password = contestant[5];
-                
-                contestants.add(new Contestant(name, id, email, mobilePhone, rank));
-                passwords.add(password);
-            }
-        }catch(Exception e){   
-        }
-        return contestants;
-    }
 }
